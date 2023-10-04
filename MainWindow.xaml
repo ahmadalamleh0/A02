@@ -21,5 +21,10 @@
                 <MenuItem Header="Copy" Command="ApplicationCommands.Copy"/>
                 <MenuItem Header="Paste" Command="ApplicationCommands.Paste"/>
             </MenuItem>
+           
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Click="OnAboutClicked"/>
+            </MenuItem>
+        </Menu>
     </DockPanel>
 </Window>
