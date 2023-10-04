@@ -15,5 +15,11 @@
                 <MenuItem Header="Save As" Click="OnSaveAsClicked"/>
                 <Separator/>
                 <MenuItem Header="Exit" Click="OnExitClicked"/>
-   </DockPanel>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Cut" Command="ApplicationCommands.Cut"/>
+                <MenuItem Header="Copy" Command="ApplicationCommands.Copy"/>
+                <MenuItem Header="Paste" Command="ApplicationCommands.Paste"/>
+            </MenuItem>
+    </DockPanel>
 </Window>
