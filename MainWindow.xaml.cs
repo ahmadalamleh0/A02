@@ -53,5 +53,48 @@ namespace A02
         {
             OpenFile();
         }
+        private void OnAboutClicked(object sender, RoutedEventArgs e)
+        {
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.ShowDialog();
+        }
+
+        // TODO: Handle other menu items (New, Open, Save, SaveAs) 
+        private void NewFile()
+        {
+            if (isModified)
+            {
+                MessageBoxResult result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Yes)
+                {
+                    SaveFile();
+                }
+                else if (result == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            WorkArea.Clear();
+            currentFile = null;
+            this.Title = "Untitled";
+        }
+
+        private void OpenFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                WorkArea.Text = File.ReadAllText(openFileDialog.FileName);
+                currentFile = openFileDialog.FileName;
+                this.Title = System.IO.Path.GetFileName(currentFile);
+                isModified = false;
+            }
+        }
+
+
+
     }
 }
