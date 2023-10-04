@@ -26,5 +26,9 @@
                 <MenuItem Header="About" Click="OnAboutClicked"/>
             </MenuItem>
         </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock Name="CharacterCount" Text="0 characters"/>
+        </StatusBar>
+        <TextBox Name="WorkArea" AcceptsReturn="True" AcceptsTab="True" TextChanged="OnWorkAreaTextChanged" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
     </DockPanel>
 </Window>
