@@ -93,6 +93,65 @@ namespace A02
                 isModified = false;
             }
         }
+        private void SaveFile()
+        {
+            if (string.IsNullOrEmpty(currentFile))
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    File.WriteAllText(saveFileDialog.FileName, WorkArea.Text);
+                    currentFile = saveFileDialog.FileName;
+                    this.Title = System.IO.Path.GetFileName(currentFile);
+                    isModified = false;
+                }
+            }
+            else
+            {
+                File.WriteAllText(currentFile, WorkArea.Text);
+                isModified = false;
+            }
+        }
+
+        private void SaveAsFile()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, WorkArea.Text);
+                currentFile = saveFileDialog.FileName;
+                this.Title = System.IO.Path.GetFileName(currentFile);
+                isModified = false;
+            }
+        }
+        private void OnExitClicked(object sender, RoutedEventArgs e)
+        {
+            if (isModified)
+            {
+                MessageBoxResult result = MessageBox.Show("Do you want to save changes before exiting?", "Confirmation", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Yes)
+                {
+                    SaveFile();
+                    this.Close();
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }
+
+
+        }
+    }
+}
 
 
 
